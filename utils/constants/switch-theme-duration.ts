@@ -1,0 +1,1 @@
+export const SWITCH_THEME_DURATION: string = "duration-200";

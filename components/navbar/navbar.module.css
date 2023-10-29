@@ -1,0 +1,26 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 5rem;
+  padding: 2px 0;
+  z-index: 999;
+  transition-property: all;
+  transition-timing-function: ease-in-out;
+  transition-duration: 300ms;
+}
+
+.navTabsWrapper {
+  align-items: center;
+  white-space: nowrap;
+}
+
+.navTabsList {
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}

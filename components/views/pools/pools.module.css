@@ -1,0 +1,7 @@
+.cardWrapper {
+  background-color: white;
+  height: 20rem;
+  width: 30rem;
+  border: 1px black;
+  border-radius: 1rem;
+}
