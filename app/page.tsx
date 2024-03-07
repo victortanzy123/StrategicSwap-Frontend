@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import { SWITCH_THEME_DURATION } from "@/utils/constants/switch-theme-duration";
 
 import { PageWrapper } from "@/components/styles/page-wrapper";
+import OverallMarketStatsView from "@/components/views/protocol/OverallMarketStatsView";
 
 async function getData() {
   const productsResponse = await fetch(
@@ -36,16 +37,10 @@ export default async function Home() {
                 The Optimised AMM for Liquidity~
               </p>
             </div>
-            <h1 className={styles.title}>
-              Welcome to <a href="https://nextjs.org">Next.js 13!</a>
-            </h1>
 
-            <p className={styles.description}>
-              Get started by editing
-              <code className={styles.code}>app/page.tsx</code>
-            </p>
+            <OverallMarketStatsView />
 
-            <div className={styles.grid}>
+            {/* <div className={styles.grid}>
               <a href="https://beta.nextjs.org/docs" className={styles.card}>
                 <h2>Documentation &rarr;</h2>
                 <p>Find in-depth information about Next.js 13</p>
@@ -68,7 +63,7 @@ export default async function Home() {
                 <h2>Deploy &rarr;</h2>
                 <p>Deploy your Next.js site to a public URL with Vercel.</p>
               </a>
-            </div>
+            </div> */}
           </main>
 
           <footer className={styles.footer}>

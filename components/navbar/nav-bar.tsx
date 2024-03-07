@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { TabItem } from "./tab-item";
 import classes from "./navbar.module.css";
 import WalletButton from "./wallet-button";
+import { useConnectWallet } from "@web3-onboard/react";
 
 const NAV_TABS: { path: string; text: string }[] = [
   {
@@ -13,14 +14,14 @@ const NAV_TABS: { path: string; text: string }[] = [
     path: "pools",
     text: "pools",
   },
-  {
-    path: "swap",
-    text: "swap",
-  },
 ];
 
 export const NavBar = () => {
   const [isSticky, setIsSticky] = useState<boolean>(false);
+  const [{ wallet }] = useConnectWallet();
+
+  const connectedUser = wallet?.accounts[0]?.address;
+  const isConnected = !!connectedUser;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,6 +41,11 @@ export const NavBar = () => {
           {NAV_TABS.map(({ path, text }) => (
             <TabItem key={path} path={path} text={text} />
           ))}
+          {connectedUser ? (
+            <TabItem path={`/profile/${connectedUser}`} text={"profile"} />
+          ) : (
+            <></>
+          )}
         </ul>
         <WalletButton />
       </div>

@@ -1,9 +1,14 @@
+"use client";
+
 import { Transition } from "@/components/styles/transition";
 import "./globals.css";
 import { ThemeProvider } from "./theme-provider";
 import { NavBar } from "@/components/navbar/nav-bar";
 import { SWITCH_THEME_DURATION } from "@/utils/constants/switch-theme-duration";
+
+// External Providers
 import { WalletProvider } from "@/components/web3/wallet-provider";
+import { ChakraProvider } from "@chakra-ui/react";
 
 export default function RootLayout({
   children,
@@ -20,12 +25,14 @@ export default function RootLayout({
       <body
         className={`bg-slate-50 dark:bg-[#0d1117] ${SWITCH_THEME_DURATION}`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <WalletProvider>
-            <NavBar />
-            <main>{children}</main>
-          </WalletProvider>
-        </ThemeProvider>
+        <ChakraProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <WalletProvider>
+              <NavBar />
+              <main>{children}</main>
+            </WalletProvider>
+          </ThemeProvider>
+        </ChakraProvider>
       </body>
     </html>
   );

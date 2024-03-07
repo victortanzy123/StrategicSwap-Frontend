@@ -2,7 +2,7 @@
 import { CommonSize } from "@/utils/helpers/types";
 import { memo } from "react";
 
-export function Tag({
+function Tag({
   content,
   size = CommonSize.xs,
 }: {
@@ -11,7 +11,7 @@ export function Tag({
 }) {
   return (
     <span
-      className={`bg-white uppercase text-${size} py-1 px-2 rounded-md w-fit bg-opacity-10`}
+      className={`bg-white uppercase text-${size} py-1 px-2 rounded-md w-fit bg-opacity-10 whitespace-nowrap`}
     >
       {content}
     </span>

@@ -1,6 +1,5 @@
 "use client";
 import { getWalletAddress } from "@/utils/helpers/misc";
-import { WalletState } from "@web3-onboard/core";
 import { useConnectWallet } from "@web3-onboard/react";
 import { memo } from "react";
 

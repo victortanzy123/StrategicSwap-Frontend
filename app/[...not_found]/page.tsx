@@ -1,5 +1,11 @@
-import {notFound} from "next/navigation"
+import Link from "next/link";
 
-export default function NotFoundCatchAll() {
-  notFound()
+export default function NotFound() {
+  return (
+    <div className="global">
+      <h2>Not Found</h2>
+      <p>Could not find requested resource</p>
+      <Link href="/">Return Home</Link>
+    </div>
+  );
 }
