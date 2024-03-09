@@ -19,6 +19,10 @@ import { factoryPoolPairsDataQuery } from "@/utils/graphql/queries/factory-pool-
 import { strategicPoolPairQuery } from "@/utils/graphql/queries/single-pool-pair-data";
 import { StrategicPairDetails } from "@/utils/helpers/types";
 import { Flex, Spinner } from "@chakra-ui/react";
+import {
+  DAI_USDC_POOL_METADATA,
+  PoolConfigModel,
+} from "@/utils/constants/pool-configs";
 
 const INITIAL_QUERY_PARAMS = {
   id: FACTORY_ADDRESS,
@@ -58,6 +62,8 @@ type PoolLayoutProps = {
   data: Partial<StrategicPairDetails>[];
   loading: boolean;
 };
+
+const POOL_CONFIGS: PoolConfigModel[] = [DAI_USDC_POOL_METADATA];
 
 function PoolLayout({ data, loading }: PoolLayoutProps) {
   console.log("SEE ", MAIN_SUBGRAPH_URL, client, INITIAL_QUERY_PARAMS);
@@ -113,7 +119,12 @@ function PoolLayout({ data, loading }: PoolLayoutProps) {
           className={`mt-20 px-10 grid grid-cols-1 md:grid-cols-2 justify-items-center xl:grid-cols-4 gap-x-8 gap-y-14`}
         >
           {data?.map((pool, i) => (
-            <PoolCard key={i} loading={loading} data={pool} />
+            <PoolCard
+              key={i}
+              loading={loading}
+              data={pool}
+              poolConfigData={POOL_CONFIGS[i]}
+            />
           ))}
         </div>
       )}

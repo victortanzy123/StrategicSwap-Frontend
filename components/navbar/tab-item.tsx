@@ -8,7 +8,7 @@ export const TabItem = ({ path, text }: { path: string; text: string }) => {
     >
       <Link
         className={
-          "block py-3 px-5 relative transition-all duration-300 group-hover:border-transparent"
+          "block py-3 px-5 relative transition-all duration-300 group-hover:border-transparent text-white"
         }
         href={path}
       >

@@ -13,22 +13,10 @@ import {
 } from "@chakra-ui/react";
 import { DAI_USDC_POOL_METADATA } from "@/utils/constants/pool-configs";
 
-// GraphQL Subgraph
-import client from "@/utils/helpers/apollo-client";
-import { useQuery } from "@apollo/client";
-import { strategicPoolPairQuery } from "@/utils/graphql/queries/single-pool-pair-data";
-
 // Functions
-import {
-  getUserTokenBalances,
-  getUpdatedReserves,
-  previewSwapAmountOut,
-} from "@/utils/helpers/web3-api";
+import { getUserTokenBalances } from "@/utils/helpers/web3-api";
 // Components
 import LiquidityHeader from "./LiquidityHeader";
-import DualTabs from "../../common/tabs/DualTabs";
-import ValueInput from "../../common/inputs/ValueInput";
-import LoaderButton from "../../common/buttons/LoaderButton";
 import {
   PairReserves,
   StrategicPairDetails,
@@ -111,7 +99,12 @@ function LiquidityCard({
   // await previewSwapAmountOut(TEST_POOL_ADDRESS, TOKENS[0], "10000");
 
   return (
-    <Card paddingX={"0.5rem"} borderRadius={"2rem"} height={"45rem"}>
+    <Card
+      paddingX={"0.5rem"}
+      borderRadius={"2rem"}
+      height={"45rem"}
+      bg={"gray.600"}
+    >
       <CardHeader justifyContent={"center"}>
         <LiquidityHeader poolConfigData={DAI_USDC_POOL_METADATA} />
       </CardHeader>
@@ -120,7 +113,7 @@ function LiquidityCard({
           {" "}
           <Tabs
             variant="soft-rounded"
-            colorScheme="blue"
+            colorScheme="gray"
             height={"35rem"}
             width={"full"}
           >

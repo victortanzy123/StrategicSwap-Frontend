@@ -17,7 +17,9 @@ function PercentageButtonsGroup({ callback }: PercentageButtonsGroupProps) {
             size={"sm"}
             key={i}
             variant={"outline"}
+            colorScheme={"white"}
             onClick={() => callback(percentage)}
+            textColor={"white"}
           >
             {percentage}%
           </Button>

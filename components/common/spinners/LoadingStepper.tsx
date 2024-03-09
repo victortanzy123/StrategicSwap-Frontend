@@ -26,6 +26,7 @@ function LoadingStepper({ isLoad, instruction }: LoadingStepperProps) {
         fontWeight={300}
         letterSpacing={"0.03em"}
         textTransform={"uppercase"}
+        color={"white"}
       >
         {instruction}
       </Text>
@@ -33,7 +34,7 @@ function LoadingStepper({ isLoad, instruction }: LoadingStepperProps) {
         {isLoad ? (
           <FaCheck size={"3rem"} style={{ color: "green" }} />
         ) : (
-          <Spinner height={"3rem"} width={"3rem"} />
+          <Spinner height={"3rem"} width={"3rem"} color={"white"} />
         )}
       </Flex>
     </Flex>

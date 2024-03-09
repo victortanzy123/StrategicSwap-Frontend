@@ -113,6 +113,7 @@ function PoolPairTabLayout({
         width={"full"}
         isLazy
         isFitted
+        colorScheme={"gray"}
       >
         <TabList>
           <Tab
@@ -128,7 +129,7 @@ function PoolPairTabLayout({
             textTransform={"uppercase"}
             letterSpacing={"0.06em"}
             fontWeight={400}
-              fontSize={"2xl"}
+            fontSize={"2xl"}
             textColor={"white"}
           >
             Swap

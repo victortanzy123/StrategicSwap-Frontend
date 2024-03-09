@@ -41,10 +41,10 @@ const DEFAULT_MODAL_BORDER_RADIUS = ["2.5rem", null, null, "2.5rem"];
 function getTopIconDisplay(state: CommonState): React.ReactNode {
   switch (state) {
     case CommonState.COMPLETED:
-      return <CheckCircleIcon boxSize="4rem" />;
+      return <CheckCircleIcon boxSize="4rem" color={"white"} />;
 
     case CommonState.FAILED:
-      return <Icon as={MdErrorOutline} boxSize="4rem" />;
+      return <Icon as={MdErrorOutline} boxSize="4rem" color={"white"} />;
 
     default:
       return <></>;
@@ -104,10 +104,15 @@ function LiquidityWithdrawModal({
                   textTransform={"uppercase"}
                   textAlign="center"
                   fontSize={["4xl", "3xl"]}
+                  textColor={"white"}
                 >
                   {header}
                 </Heading>
-                <Text fontSize={["xl", "lg"]} textAlign={"center"}>
+                <Text
+                  fontSize={["xl", "lg"]}
+                  textAlign={"center"}
+                  textColor={"white"}
+                >
                   {failed ? "Transaction failed, please re-try again." : text}
                 </Text>
               </VStack>
@@ -141,6 +146,7 @@ function LiquidityWithdrawModal({
                 textTransform={"uppercase"}
                 my={["0.5rem", 0]}
                 width={["full", "auto"]}
+                textColor={"white"}
               >
                 Completed
               </Button>
@@ -154,6 +160,7 @@ function LiquidityWithdrawModal({
                 fontWeight={400}
                 letterSpacing={"0.06em"}
                 textTransform={"uppercase"}
+                textColor={"white"}
               >
                 Loading...
               </Button>
@@ -167,9 +174,10 @@ function LiquidityWithdrawModal({
                 textTransform={"uppercase"}
                 variant="solid"
                 onClick={toggleOpen}
-                bgColor={status ? "artzone.blue" : "artzone.pink"}
               >
-                <Text variant="strong">Okay, I understand</Text>
+                <Text variant="strong" textColor={"white"}>
+                  Okay, I understand
+                </Text>
               </Button>
             )}
           </Flex>

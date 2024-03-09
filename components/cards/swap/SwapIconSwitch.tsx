@@ -11,10 +11,8 @@ function SwapIconSwitch({ callback }: SwapIconSwitchProps) {
   return (
     <IconButton
       aria-label="switch-icon"
-      //   borderRadius={"full"}
       height={"2rem"}
       width={"2rem"}
-      //   my={"-12px"}
       position={"relative"}
       border={"4px solid rgb(255, 255, 255)"}
       backgroundColor={"rgb(246, 245, 250)"}
@@ -23,7 +21,7 @@ function SwapIconSwitch({ callback }: SwapIconSwitchProps) {
       _hover={{
         transform: "rotate(180deg)",
       }}
-      icon={<FaArrowDown color="black" />}
+      icon={<FaArrowDown color={"white"} />}
       onClick={callback}
     />
   );

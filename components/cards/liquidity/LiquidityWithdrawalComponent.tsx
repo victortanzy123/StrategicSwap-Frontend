@@ -153,6 +153,7 @@ function LiquidityWithdrawalComponent({
           isDisabled={loading || isWithdrawing}
           value={withdrawalState.lpTokenToWithdraw}
           onChange={valueChangeHandler}
+          focusBorderColor={"white"}
         />
         <Flex mt={"0.5rem"} justifyContent={"space-between"}>
           <Skeleton isLoaded={!loading} minWidth={"8rem"} height={"1.8rem"}>

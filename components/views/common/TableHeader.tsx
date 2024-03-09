@@ -16,6 +16,7 @@ function TableHeader({ text, center = false }: TableHeaderProps) {
       letterSpacing={"0.06em"}
       mt={"1rem"}
       mb={"2rem"}
+      textColor={"white"}
     >
       {text}
     </Heading>

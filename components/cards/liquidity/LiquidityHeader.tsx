@@ -3,7 +3,6 @@ import React from "react";
 import Image from "next/image";
 import { PoolConfigModel } from "@/utils/constants/pool-configs";
 import { DEFAULT_CHAIN_DETAILS } from "@/utils/helpers/web3";
-import { DEFAULT_DECIMALS_PRECISION } from "@/utils/helpers/misc";
 
 // Icons
 import { InfoIcon } from "@chakra-ui/icons";
@@ -32,7 +31,7 @@ function LiquidityHeader({ poolConfigData }: LiquidityHeaderProps) {
         alt="icon"
         className="mr-4"
       />
-      <div className="flex flex-col font-display">
+      <div className="flex flex-col font-displa  text-white">
         {name}
         <p className="text-sm italic text-white font-body">
           {DEFAULT_CHAIN_DETAILS.chain}
@@ -45,7 +44,7 @@ function LiquidityHeader({ poolConfigData }: LiquidityHeaderProps) {
           py={"0.25rem"}
           width={"20rem"}
           height={"7.5rem"}
-          background={"black"}
+          background={"gray.700"}
           borderRadius={"1rem"}
           flexDirection={"column"}
         >

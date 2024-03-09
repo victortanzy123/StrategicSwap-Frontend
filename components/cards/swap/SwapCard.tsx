@@ -180,7 +180,7 @@ function SwapCard({
         swapOutToken={swapOutToken}
         swapTransactionState={swapTransactionState}
       />
-      <Card height={"35rem"} borderRadius={"2rem"}>
+      <Card height={"35rem"} borderRadius={"2rem"} bg={"gray.600"}>
         <CardHeader justifyContent={"center"}>
           <Heading
             size="xl"
@@ -188,6 +188,7 @@ function SwapCard({
             textTransform={"uppercase"}
             letterSpacing={"0.1em"}
             fontWeight={"300"}
+            textColor={"white"}
           >
             {headingText}
           </Heading>
@@ -198,6 +199,7 @@ function SwapCard({
             textTransform={"uppercase"}
             letterSpacing={"0.1em"}
             fontSize={"xl"}
+            textColor={"white"}
           >
             Swapping {swapInState.token.name} for {swapOutToken.name}
           </Text>
@@ -206,6 +208,7 @@ function SwapCard({
               textTransform={"uppercase"}
               letterSpacing={"0.1em"}
               fontWeight={"300"}
+              textColor={"white"}
             >
               Amount In ({swapInState.token.name})
             </FormLabel>
@@ -214,10 +217,14 @@ function SwapCard({
               onChange={valueChangeHandler}
               value={swapInState.tokenAmount}
               isDisabled={isLoading || isSwapping}
+              textColor={"white"}
+              focusBorderColor={"white"}
             />
             <Flex mt={"0.5rem"} justifyContent={"space-between"}>
               <Skeleton isLoaded={!isLoading} minWidth={"8rem"}>
-                <FormHelperText>Balance: {swapInTokenBalance}</FormHelperText>
+                <FormHelperText textColor={"white"}>
+                  Balance: {swapInTokenBalance}
+                </FormHelperText>
               </Skeleton>
               <PercentageButtonsGroup callback={getAmountByPercentage} />
             </Flex>
@@ -230,17 +237,23 @@ function SwapCard({
               textTransform={"uppercase"}
               letterSpacing={"0.1em"}
               fontWeight={"300"}
+              textColor={"white"}
             >
               Receiving Amount ({swapOutToken.name})
             </FormLabel>
-            <Input type="number" isDisabled value={amountOut} />
+            <Input
+              type="number"
+              isDisabled
+              value={amountOut}
+              textColor={"white"}
+            />
             <Flex mt={"0.5rem"} justifyContent={"space-between"}>
               <Skeleton
                 isLoaded={!isLoading}
                 minWidth={"8rem"}
                 height={"1.8rem"}
               >
-                <FormHelperText>
+                <FormHelperText textColor={"white"}>
                   Balance: {swapOutTokenState?.balance}
                 </FormHelperText>
               </Skeleton>
@@ -254,6 +267,7 @@ function SwapCard({
             height={"3rem"}
             onClick={swapHandler}
             isDisabled={swapInState.tokenAmount === 0 || isLoading}
+            textColor={"white"}
           >
             {userAddress ? "SWAP" : "CONNECT WALLET"}
           </Button>

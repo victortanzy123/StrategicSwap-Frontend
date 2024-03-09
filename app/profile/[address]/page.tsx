@@ -53,7 +53,7 @@ export default async function Page({
     <PageWrapper>
       <div
         className={
-          "w-100%  flex justify-center  mt-20 mb-10 text-6xl uppercase tracking-widest"
+          "w-100%  flex justify-center  mt-20 mb-10 text-6xl text-white uppercase tracking-widest"
         }
       >
         {truncateAddress(userAddress)} Profile

@@ -8,19 +8,22 @@ import {
   StrategicPairDetails,
   SwapMode,
 } from "@/utils/helpers/types";
-import { Flex } from "@chakra-ui/react";
 import Image from "next/image";
 import { memo } from "react";
+import { DEFAULT_CHAIN_DETAILS } from "@/utils/helpers/web3";
+import { PoolConfigModel } from "@/utils/constants/pool-configs";
 
 type PoolCardProps = {
   data: Partial<StrategicPairDetails>;
+  poolConfigData: PoolConfigModel;
   loading: boolean;
 };
 
-function PoolCard({ data, loading }: PoolCardProps) {
+function PoolCard({ data, poolConfigData, loading }: PoolCardProps) {
   console.log("SEE POOL CARD", data);
   if (!data) return <></>;
-  const poolName = `${data?.token0!.name}-${data?.token1!.name}`;
+  const { token0, token1, name, yieldPercentage } = poolConfigData;
+  // const poolName = `${data?.token0!.name}-${data?.token1!.name}`;
   const swapMode = data.isStable ? SwapMode.STABLE : SwapMode.VOLATILE;
   return (
     <NextLink href={`/pool-pair/${data?.address}`}>
@@ -29,29 +32,47 @@ function PoolCard({ data, loading }: PoolCardProps) {
       >
         <div className="border-4 border-blue-600 absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <div className={"h-full w-full"}>
-          <div className={"flex justify-between items-center"}>
-            <h2 className={"tracking-wider text-3xl mb-1"}>{poolName}</h2>
+          <div className={"flex  items-center"}>
+            {/* <h2 className={"tracking-wider text-3xl mb-1 text-white"}>
+              {poolName}
+            </h2> */}
+            <Image
+              src={token0.image}
+              width={50}
+              height={50}
+              alt="icon"
+              className="mr-2"
+            />
+            <Image
+              src={token1.image}
+              width={50}
+              height={50}
+              alt="icon"
+              className="mr-2"
+            />
+            <div className="flex flex-col font-display text-xl  text-white">
+              {name}
+              <p className="text-sm italic text-white font-body">
+                {DEFAULT_CHAIN_DETAILS.chain}
+              </p>
+            </div>
+          </div>
+          <div className={"flex mt-4 items-center justify-between"}>
+            <span className={"mr-4 text-teal-100"}> 5.00% p.a</span>
             <Tag content={swapMode} size={CommonSize.md} />
           </div>
-          <div className={"flex mt-4"}>
-            <span className={"mr-4 text-teal-100"}> 5.00% p.a</span>
-            <Image
-              src={"/vercel.svg"}
-              alt={"lighting"}
-              width={100}
-              height={50}
-            />
-          </div>
           <div className={"flex mt-1"}>
-            <h2 className={"!important mr-2"}>
+            <h2 className={"!important mr-2 text-white text-2xl"}>
               ${data?.tvl!.toFixed(DISPLAY_USD_DECIMALS)}
             </h2>
-            <span className={`text-md font-thin`}>TVL</span>
+            <span className={`text-2xl font-thin text-white`}>TVL</span>
           </div>
 
-          <div className={"flex flex-col mt-5 flex-1"}>
-            <span className={"uppercase font-thin"}>Strategies:</span>
-            <div className={"flex"}>
+          <div className={"flex flex-col mt-2 flex-1"}>
+            <span className={"uppercase font-thin text-white"}>
+              Strategies:
+            </span>
+            <div className={"flex mt-3"}>
               <div className={"mr-2"}>
                 <Tag content={"sDai"} />
               </div>

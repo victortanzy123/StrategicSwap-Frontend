@@ -3,6 +3,7 @@ import React, { memo } from "react";
 import { Flex, Stat, Skeleton, StatLabel, StatNumber } from "@chakra-ui/react";
 import Tag from "@/components/common/tag";
 import { CommonSize } from "@/utils/helpers/types";
+import { DEFAULT_SKELETON_BORDER_RADIUS } from "@/utils/styles/common-config";
 
 export enum ViewType {
   STATISTIC = "STATISTIC",
@@ -33,7 +34,10 @@ function BasicStatisticView({
         display={"flex"}
         justifyContent={"center"}
       >
-        <Skeleton isLoaded={!loading}>
+        <Skeleton
+          isLoaded={!loading}
+          borderRadius={DEFAULT_SKELETON_BORDER_RADIUS}
+        >
           <StatLabel
             width={"full"}
             textAlign={"center"}
@@ -44,9 +48,13 @@ function BasicStatisticView({
             {headerText}
           </StatLabel>
         </Skeleton>
-        <Skeleton isLoaded={!loading}>
+        <Skeleton
+          isLoaded={!loading}
+          borderRadius={DEFAULT_SKELETON_BORDER_RADIUS}
+        >
           {type === ViewType.STATISTIC ? (
             <StatNumber
+              mt={"0.2rem"}
               display={"flex"}
               justifyContent={"center"}
               fontSize={largeMode ? ["4xl"] : ["xs", "sm", "xl"]}

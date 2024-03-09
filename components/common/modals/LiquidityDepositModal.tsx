@@ -41,10 +41,10 @@ const DEFAULT_MODAL_BORDER_RADIUS = ["2.5rem", null, null, "2.5rem"];
 function getTopIconDisplay(state: CommonState): React.ReactNode {
   switch (state) {
     case CommonState.COMPLETED:
-      return <CheckCircleIcon boxSize="4rem" />;
+      return <CheckCircleIcon boxSize="4rem" color={"white"} />;
 
     case CommonState.FAILED:
-      return <Icon as={MdErrorOutline} boxSize="4rem" />;
+      return <Icon as={MdErrorOutline} boxSize="4rem" color={"white"} />;
 
     default:
       return <></>;
@@ -106,10 +106,15 @@ function LiquidityDepositModal({
                   textTransform={"uppercase"}
                   textAlign="center"
                   fontSize={["4xl", "3xl"]}
+                  color={"white"}
                 >
                   {header}
                 </Heading>
-                <Text fontSize={["xl", "lg"]} textAlign={"center"}>
+                <Text
+                  fontSize={["xl", "lg"]}
+                  textAlign={"center"}
+                  color={"white"}
+                >
                   {failed ? "Transaction failed, please re-try again." : text}
                 </Text>
               </VStack>
@@ -150,6 +155,7 @@ function LiquidityDepositModal({
                 textTransform={"uppercase"}
                 my={["0.5rem", 0]}
                 width={["full", "auto"]}
+                textColor={"white"}
               >
                 Completed
               </Button>
@@ -163,6 +169,7 @@ function LiquidityDepositModal({
                 fontWeight={400}
                 letterSpacing={"0.06em"}
                 textTransform={"uppercase"}
+                textColor={"white"}
               >
                 Loading...
               </Button>
@@ -175,10 +182,12 @@ function LiquidityDepositModal({
                 letterSpacing={"0.06em"}
                 textTransform={"uppercase"}
                 variant="solid"
+                bg={"gray.700"}
                 onClick={toggleOpen}
-                bgColor={status ? "artzone.blue" : "artzone.pink"}
               >
-                <Text variant="strong">Okay, I understand</Text>
+                <Text variant="strong" textColor={"white"}>
+                  Okay, I understand
+                </Text>
               </Button>
             )}
           </Flex>

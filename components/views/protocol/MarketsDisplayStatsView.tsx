@@ -28,26 +28,33 @@ function MarketsDisplayStatsView({
         letterSpacing={"0.08rem"}
         textTransform={"uppercase"}
         whiteSpace={"nowrap"}
-        maxWidth={["80%", null, "90%", "50rem"]}
+        maxWidth={["80%", null, "90%", "70rem"]}
       >
         <BasicStatisticView
+          largeMode
           headerText={"Pool Pairs"}
           displayValue={data?.pairCount ?? 0}
           loading={loading}
         />
+        <Divider orientation="vertical" />
         <BasicStatisticView
+          largeMode
           headerText={"Total Value Locked"}
           displayValue={data?.totalTvlUSD?.toFixed(DISPLAY_USD_DECIMALS) ?? 0}
           loading={loading}
         />
+        <Divider orientation="vertical" />
         <BasicStatisticView
+          largeMode
           headerText={"Total Volume"}
           displayValue={
             data?.totalVolumeUSD?.toFixed(DISPLAY_USD_DECIMALS) ?? 0
           }
           loading={loading}
         />
+        <Divider orientation="vertical" />
         <BasicStatisticView
+          largeMode
           headerText={"Fees Generated"}
           displayValue={data?.totalFeeUSD.toFixed(DISPLAY_USD_DECIMALS) ?? 0}
           loading={loading}

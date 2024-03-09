@@ -11,7 +11,7 @@ function Tag({
 }) {
   return (
     <span
-      className={`bg-white uppercase text-${size} py-1 px-2 rounded-md w-fit bg-opacity-10 whitespace-nowrap`}
+      className={`bg-white uppercase text-${size} text-white py-1 px-2 rounded-md w-fit bg-opacity-10 whitespace-nowrap`}
     >
       {content}
     </span>

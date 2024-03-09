@@ -15,3 +15,5 @@ export const DATA_TABLE_MAX_HEIGHT: Record<string, AttributeType> = {
   SMALL: SMALL_TABLE_MAX_HEIGHT,
   FULL: FULL_TABLE_MAX_HEIGHT,
 };
+
+export const DEFAULT_SKELETON_BORDER_RADIUS: string = "0.5rem";

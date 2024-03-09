@@ -179,6 +179,7 @@ function LiquidityDepositComponent({
           textTransform={"uppercase"}
           letterSpacing={"0.1em"}
           fontWeight={"300"}
+          textColor={"white"}
         >
           Amount In ({pair.token0.name})
         </FormLabel>
@@ -187,10 +188,12 @@ function LiquidityDepositComponent({
           isDisabled={loading || isDepositing}
           value={depositState.token0Amount}
           onChange={token0ValueChangeHandler}
+          textColor={"white"}
+          focusBorderColor={"white"}
         />
         <Flex mt={"0.5rem"} justifyContent={"space-between"}>
           <Skeleton isLoaded={!loading} minWidth={"8rem"} height={"1.8rem"}>
-            <FormHelperText>
+            <FormHelperText textColor={"white"}>
               Balance: {userTokenBalancesState?.token0.balance ?? 0}
             </FormHelperText>
           </Skeleton>
@@ -204,6 +207,7 @@ function LiquidityDepositComponent({
           textTransform={"uppercase"}
           letterSpacing={"0.1em"}
           fontWeight={"300"}
+          textColor={"white"}
         >
           Amount In ({pair.token1.name})
         </FormLabel>
@@ -212,10 +216,12 @@ function LiquidityDepositComponent({
           isDisabled={loading || isDepositing}
           value={depositState.token1Amount.toFixed(DEFAULT_DECIMALS_PRECISION)}
           onChange={token1ValueChangeHandler}
+          textColor={"white"}
+          focusBorderColor={"white"}
         />
         <Flex mt={"0.5rem"} justifyContent={"space-between"}>
           <Skeleton isLoaded={!loading} minWidth={"8rem"} height={"1.8rem"}>
-            <FormHelperText>
+            <FormHelperText textColor={"white"}>
               Balance: {userTokenBalancesState?.token1.balance ?? 0}
             </FormHelperText>
           </Skeleton>
@@ -229,6 +235,7 @@ function LiquidityDepositComponent({
           textTransform={"uppercase"}
           letterSpacing={"0.1em"}
           fontWeight={"300"}
+          textColor={"white"}
         >
           You will Receive
         </Text>
@@ -236,8 +243,9 @@ function LiquidityDepositComponent({
           textTransform={"uppercase"}
           letterSpacing={"0.1em"}
           fontWeight={"300"}
+          textColor={"white"}
         >
-          <Text fontWeight={"bold"}>
+          <Text fontWeight={"bold"} textColor={"white"}>
             {lpTokenOut.toFixed(DEFAULT_DECIMALS_PRECISION)}
           </Text>{" "}
           LP TOKEN
@@ -254,6 +262,8 @@ function LiquidityDepositComponent({
         isLoading={isDepositing}
         isDisabled={loading}
         onClick={depositHandler}
+        textColor={"white"}
+        colorScheme={"gray"}
       >
         PROVIDE LIQUIDITY
       </Button>

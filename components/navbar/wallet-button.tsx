@@ -15,7 +15,7 @@ function WalletButton() {
         data-dropdown-toggle="dropdown"
         disabled={connecting}
         onClick={onClickHandler}
-        className={`w-fit absolute right-5 top-2 p-3 uppercase tracking-wider rounded-full hover:scale-110 active:scale-100 duration-200 bg-slate-200 dark:bg-[#212933]`}
+        className={`w-fit absolute right-5 top-2 p-3 uppercase tracking-wider rounded-full hover:scale-110 active:scale-100 duration-200 bg-slate-200 dark:bg-[#212933] text-white`}
       >
         {!!wallet ? getWalletAddress(wallet, true) : "Connect Wallet"}
       </button>
