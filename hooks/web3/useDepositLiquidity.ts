@@ -20,6 +20,7 @@ export type UseSwapTokensProps = {
     token1Amount: number
   ) => Promise<string>;
   depositTransactionState: DepositTransactionState;
+  refreshDepositTransactionState: () => void;
 };
 
 export type DepositTransactionState = {
@@ -123,7 +124,15 @@ function useDepositLiquidity(): UseSwapTokensProps {
     []
   );
 
-  return { depositLiquidity, depositTransactionState };
+  const refreshDepositTransactionState = useCallback(() => {
+    setDepositTransactionState(() => DEFAULT_DEPOSIT_TX_STATE);
+  }, []);
+
+  return {
+    depositLiquidity,
+    depositTransactionState,
+    refreshDepositTransactionState,
+  };
 }
 
 export default useDepositLiquidity;

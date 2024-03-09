@@ -51,9 +51,13 @@ export default async function Page({
 
   return (
     <PageWrapper>
-      <h1 className="text-6xl font-bold mt-20 mb-10">
+      <div
+        className={
+          "w-100%  flex justify-center  mt-20 mb-10 text-6xl uppercase tracking-widest"
+        }
+      >
         {truncateAddress(userAddress)} Profile
-      </h1>
+      </div>
       <div className="flex justify-center flex-col max-w-60 h-80vh align-middle ">
         <ProfileStatistics data={res!} />
         <ProfileLiquidityPositionsView data={res!} />

@@ -5,7 +5,13 @@ export default function PoolPairLayout({
 }) {
   return (
     <div className="p-8 w-full flex flex-col items-center">
-      <h1 className="text-6xl font-bold mt-20 mb-10">Strategic Pool</h1>
+      {/* <div
+        className={
+          "w-100%  flex justify-center  mt-20 mb-10 text-6xl uppercase tracking-widest"
+        }
+      >
+        Strategic Pool
+      </div> */}
       {children}
     </div>
   );

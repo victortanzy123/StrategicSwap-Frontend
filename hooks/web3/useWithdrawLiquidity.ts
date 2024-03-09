@@ -17,6 +17,7 @@ export type UseSwapTokensProps = {
     amount: number
   ) => Promise<string>;
   withdrawTransactionState: WithdrawTransactionState;
+  refreshWithdrawTransactionState: () => void;
 };
 
 export type WithdrawTransactionState = {
@@ -90,7 +91,15 @@ function useWithdrawLiquidity(): UseSwapTokensProps {
     []
   );
 
-  return { withdrawLiquidity, withdrawTransactionState };
+  const refreshWithdrawTransactionState = useCallback(() => {
+    setWithdrawTransactionState(() => DEFAULT_WITHDRAW_TX_STATE);
+  }, []);
+
+  return {
+    withdrawLiquidity,
+    withdrawTransactionState,
+    refreshWithdrawTransactionState,
+  };
 }
 
 export default useWithdrawLiquidity;

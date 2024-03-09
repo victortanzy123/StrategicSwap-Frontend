@@ -18,6 +18,7 @@ export type UseSwapTokensProps = {
     tokenInAmount: number
   ) => Promise<string>;
   swapTransactionState: SwapTransactionState;
+  resetSwapTransactionState: () => void;
 };
 
 export type SwapTransactionState = {
@@ -103,7 +104,11 @@ function useSwapTokens(): UseSwapTokensProps {
     []
   );
 
-  return { swap, swapTransactionState };
+  const resetSwapTransactionState = useCallback(() => {
+    setSwapTransactionState(() => DEFAULT_SWAP_TX_STATE);
+  }, []);
+
+  return { swap, swapTransactionState, resetSwapTransactionState };
 }
 
 export default useSwapTokens;

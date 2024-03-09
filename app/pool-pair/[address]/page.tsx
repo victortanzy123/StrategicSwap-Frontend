@@ -65,6 +65,13 @@ export default async function Page({ params }: any) {
 
   return (
     <PageWrapper>
+      <div
+        className={
+          "w-100%  flex justify-center  mt-20 mb-10 text-6xl uppercase tracking-widest"
+        }
+      >
+        {res?.token0?.name}-{res?.token1?.name} Strategic Pool
+      </div>
       <div className="flex justify-center flex-col max-w-60 h-100vh align-middle ">
         <PoolStatistics data={res!} />
         <PoolPairTabLayout

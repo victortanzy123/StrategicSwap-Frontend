@@ -75,7 +75,8 @@ function SwapCard({
   const [amountOut, setAmountOut] = useState<number>(0);
   const swapOutToken = swapInState.tokenIndex === 0 ? token1 : token0;
 
-  const { swap, swapTransactionState } = useSwapTokens();
+  const { swap, swapTransactionState, resetSwapTransactionState } =
+    useSwapTokens();
 
   async function refreshUserSwapState() {
     setIsLoading(() => true);
@@ -163,11 +164,16 @@ function SwapCard({
     console.log("SWAP TRANSACTION HASH:", txHash);
   };
 
+  const toggleOpen = useCallback(() => {
+    resetSwapTransactionState();
+    onToggle();
+  }, []);
+
   return (
     <>
       <SwapModal
         isOpen={isOpen}
-        toggleOpen={onToggle}
+        toggleOpen={toggleOpen}
         status={{ state: CommonState.COMPLETED, type: "APPROVE", hash: "" }}
         data={data}
         swapInToken={swapInState.token}

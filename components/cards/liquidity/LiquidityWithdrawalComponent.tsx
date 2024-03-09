@@ -58,8 +58,11 @@ function LiquidityWithdrawalComponent({
   refreshUserTokenBalances,
 }: LiquidityWithdrawalComponentProps) {
   const { isOpen, onOpen, onToggle } = useDisclosure();
-  const { withdrawLiquidity, withdrawTransactionState } =
-    useWithdrawLiquidity();
+  const {
+    withdrawLiquidity,
+    withdrawTransactionState,
+    refreshWithdrawTransactionState,
+  } = useWithdrawLiquidity();
 
   const [loading, setIsLoading] = useState<boolean>(false);
   const [isWithdrawing, setIsWithdrawing] = useState<boolean>(false);
@@ -122,11 +125,17 @@ function LiquidityWithdrawalComponent({
     });
   };
   console.log("SEE WITHDRAWAL STATE", withdrawalState);
+
+  const toggleOpen = useCallback(() => {
+    refreshWithdrawTransactionState();
+    onToggle();
+  }, []);
+
   return (
     <>
       <LiquidityWithdrawModal
         isOpen={isOpen}
-        toggleOpen={onToggle}
+        toggleOpen={toggleOpen}
         data={pair}
         withdrawTransactionState={withdrawTransactionState}
         withdrawalState={withdrawalState}

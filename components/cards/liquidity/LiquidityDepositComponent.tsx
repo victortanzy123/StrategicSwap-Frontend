@@ -52,7 +52,11 @@ function LiquidityDepositComponent({
   refreshUserTokenBalances,
 }: LiquidityDepositComponentProps) {
   const { isOpen, onOpen, onToggle } = useDisclosure();
-  const { depositLiquidity, depositTransactionState } = useDepositLiquidity();
+  const {
+    depositLiquidity,
+    depositTransactionState,
+    refreshDepositTransactionState,
+  } = useDepositLiquidity();
 
   const [loading, setIsLoading] = useState<boolean>(false);
   const [isDepositing, setIsDepositing] = useState<boolean>(false);
@@ -156,11 +160,16 @@ function LiquidityDepositComponent({
       return calcCorTokenDepositAmount(1, amount, pair.reserve0, pair.reserve1);
     });
   };
+
+  const toggleOpen = useCallback(() => {
+    refreshDepositTransactionState();
+    onToggle();
+  }, []);
   return (
     <>
       <LiquidityDepositModal
         isOpen={isOpen}
-        toggleOpen={onToggle}
+        toggleOpen={toggleOpen}
         data={pair}
         depositTransactionState={depositTransactionState}
         depositState={depositState}
