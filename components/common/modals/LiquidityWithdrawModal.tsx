@@ -79,7 +79,7 @@ function LiquidityWithdrawModal({
     >
       <ModalOverlay />
       <ModalContent bg={"#1A1D26"} borderRadius={DEFAULT_MODAL_BORDER_RADIUS}>
-        <ModalCloseButton right={5} top={5} />
+        <ModalCloseButton right={5} top={5} color={"white"} />
         <ModalBody
           paddingTop="4rem"
           paddingBottom="2rem"

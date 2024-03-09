@@ -81,7 +81,7 @@ function LiquidityDepositModal({
     >
       <ModalOverlay />
       <ModalContent bg={"#1A1D26"} borderRadius={DEFAULT_MODAL_BORDER_RADIUS}>
-        <ModalCloseButton right={5} top={5} />
+        <ModalCloseButton right={5} top={5} color={"white"} />
         <ModalBody
           paddingTop="4rem"
           paddingBottom="2rem"
@@ -106,14 +106,14 @@ function LiquidityDepositModal({
                   textTransform={"uppercase"}
                   textAlign="center"
                   fontSize={["4xl", "3xl"]}
-                  color={"white"}
+                  textColor={"white"}
                 >
                   {header}
                 </Heading>
                 <Text
                   fontSize={["xl", "lg"]}
                   textAlign={"center"}
-                  color={"white"}
+                  textColor={"white"}
                 >
                   {failed ? "Transaction failed, please re-try again." : text}
                 </Text>

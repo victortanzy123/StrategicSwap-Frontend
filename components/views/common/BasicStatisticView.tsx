@@ -44,6 +44,7 @@ function BasicStatisticView({
             mb={1.5}
             fontSize={largeMode ? ["2xl"] : ["xs", "sm", "md"]}
             textTransform={"uppercase"}
+            textColor={"white"}
           >
             {headerText}
           </StatLabel>
@@ -58,6 +59,7 @@ function BasicStatisticView({
               display={"flex"}
               justifyContent={"center"}
               fontSize={largeMode ? ["4xl"] : ["xs", "sm", "xl"]}
+              textColor={"white"}
             >
               {decimals > 0
                 ? parseFloat(
