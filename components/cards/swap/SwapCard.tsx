@@ -268,6 +268,9 @@ function SwapCard({
             onClick={swapHandler}
             isDisabled={swapInState.tokenAmount === 0 || isLoading}
             textColor={"white"}
+            bg={"gray.500"}
+            textTransform={"uppercase"}
+            letterSpacing={"0.1em"}
           >
             {userAddress ? "SWAP" : "CONNECT WALLET"}
           </Button>

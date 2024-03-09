@@ -146,6 +146,7 @@ function LiquidityWithdrawModal({
                 textTransform={"uppercase"}
                 my={["0.5rem", 0]}
                 width={["full", "auto"]}
+                bg={"gray.500"}
                 textColor={"white"}
               >
                 Completed
@@ -160,6 +161,7 @@ function LiquidityWithdrawModal({
                 fontWeight={400}
                 letterSpacing={"0.06em"}
                 textTransform={"uppercase"}
+                bg={"gray.500"}
                 textColor={"white"}
               >
                 Loading...
@@ -174,6 +176,8 @@ function LiquidityWithdrawModal({
                 textTransform={"uppercase"}
                 variant="solid"
                 onClick={toggleOpen}
+                bg={"gray.500"}
+                textColor={"white"}
               >
                 <Text variant="strong" textColor={"white"}>
                   Okay, I understand

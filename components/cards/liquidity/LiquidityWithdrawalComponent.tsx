@@ -199,17 +199,6 @@ function LiquidityWithdrawalComponent({
             </Text>{" "}
             {pair.token1.name}
           </Text>
-
-          {/* <Text
-            textTransform={"uppercase"}
-            letterSpacing={"0.1em"}
-            fontWeight={"300"}
-          >
-            {withdrawalState.token1Redeemable.toFixed(
-              DEFAULT_DECIMALS_PRECISION
-            )}{" "}
-            {pair.token1.name}
-          </Text> */}
         </Box>
       </Flex>
       <Divider my={"2rem"} width={"full"} />
@@ -223,6 +212,8 @@ function LiquidityWithdrawalComponent({
         isLoading={isWithdrawing}
         isDisabled={loading}
         onClick={withdrawHandler}
+        bg={"gray.500"}
+        textColor={"white"}
       >
         WITHDRAW LIQUIDITY
       </Button>

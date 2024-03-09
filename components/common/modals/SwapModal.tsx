@@ -146,6 +146,8 @@ function SwapModal({
                 textTransform={"uppercase"}
                 my={["0.5rem", 0]}
                 width={["full", "auto"]}
+                bg={"gray.500"}
+                textColor={"white"}
               >
                 Completed
               </Button>
@@ -159,6 +161,8 @@ function SwapModal({
                 fontWeight={400}
                 letterSpacing={"0.06em"}
                 textTransform={"uppercase"}
+                bg={"gray.500"}
+                textColor={"white"}
               >
                 Loading...
               </Button>
@@ -172,9 +176,12 @@ function SwapModal({
                 textTransform={"uppercase"}
                 variant="solid"
                 onClick={toggleOpen}
-                bgColor={status ? "artzone.blue" : "artzone.pink"}
+                bg={"gray.500"}
+                textColor={"white"}
               >
-                <Text variant="strong">Okay, I understand</Text>
+                <Text variant="strong" textColor={"white"}>
+                  Okay, I understand
+                </Text>
               </Button>
             )}
           </Flex>

@@ -263,7 +263,7 @@ function LiquidityDepositComponent({
         isDisabled={loading}
         onClick={depositHandler}
         textColor={"white"}
-        colorScheme={"gray"}
+        bg={"gray.500"}
       >
         PROVIDE LIQUIDITY
       </Button>

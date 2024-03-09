@@ -155,6 +155,7 @@ function LiquidityDepositModal({
                 textTransform={"uppercase"}
                 my={["0.5rem", 0]}
                 width={["full", "auto"]}
+                bg={"gray.500"}
                 textColor={"white"}
               >
                 Completed
@@ -169,6 +170,7 @@ function LiquidityDepositModal({
                 fontWeight={400}
                 letterSpacing={"0.06em"}
                 textTransform={"uppercase"}
+                bg={"gray.500"}
                 textColor={"white"}
               >
                 Loading...
@@ -182,7 +184,8 @@ function LiquidityDepositModal({
                 letterSpacing={"0.06em"}
                 textTransform={"uppercase"}
                 variant="solid"
-                bg={"gray.700"}
+                bg={"gray.500"}
+                textColor={"white"}
                 onClick={toggleOpen}
               >
                 <Text variant="strong" textColor={"white"}>
