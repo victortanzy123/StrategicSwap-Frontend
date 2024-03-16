@@ -69,7 +69,6 @@ function SwapModal({
   const failed =
     swapTransactionState.approveSwapInToken === CommonState.FAILED &&
     swapTransactionState.swap === CommonState.FAILED;
-  console.log("See here", completed, failed);
   const loading = !completed && !failed;
 
   return (
@@ -147,6 +146,7 @@ function SwapModal({
                 my={["0.5rem", 0]}
                 width={["full", "auto"]}
                 bg={"gray.500"}
+                border={"1px solid white"}
                 textColor={"white"}
               >
                 Completed
@@ -162,6 +162,7 @@ function SwapModal({
                 letterSpacing={"0.06em"}
                 textTransform={"uppercase"}
                 bg={"gray.500"}
+                border={"1px solid white"}
                 textColor={"white"}
               >
                 Loading...
@@ -178,6 +179,7 @@ function SwapModal({
                 onClick={toggleOpen}
                 bg={"gray.500"}
                 textColor={"white"}
+                border={"1px solid white"}
               >
                 <Text variant="strong" textColor={"white"}>
                   Okay, I understand

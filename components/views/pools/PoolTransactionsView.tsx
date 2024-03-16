@@ -25,7 +25,6 @@ type PoolTransactionsViewProps = {
 };
 
 function PoolTransactionsView({ pairAddress }: PoolTransactionsViewProps) {
-  console.log("PARAMS", POOL_INITIAL_PARAMS(pairAddress));
   const [search, { loading, data, error, fetchMore }] = useLazyQuery(
     poolPairTransactionsQuery(),
     {
@@ -34,14 +33,13 @@ function PoolTransactionsView({ pairAddress }: PoolTransactionsViewProps) {
       nextFetchPolicy: "cache-and-network",
     }
   );
-  console.log("SEETRANSACTIONS DATA", data, loading, error);
 
   useEffect(() => {
     if (pairAddress) search();
   }, [pairAddress]);
 
   const processedData = processPoolTransactionsData(data?.data) ?? null;
-  console.log("SEE PROCESSED DATA:", processedData);
+
   return (
     <Flex
       width={"full"}

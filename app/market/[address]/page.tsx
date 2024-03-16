@@ -22,28 +22,6 @@ type PoolPairPageProps = {
 //Export this to put a default fetching config (does not override the fetch)
 export const dynamic = "force-dynamic";
 
-//🌨️ Next.js 12 implementation
-async function getServerSideProps(
-  context: any
-): Promise<GetServerSidePropsResult<PoolPairPageProps>> {
-  console.log("SEE CONTEXT QUERY", context.query);
-  const id = context.query?.address;
-
-  const { data, loading } = await client.query({
-    query: strategicPoolPairQuery(),
-    variables: { id },
-  });
-  console.log("See data", data);
-  const poolData = processSinglePairData(data?.dats)!;
-  console.log("Pool Data", poolData);
-  return {
-    props: {
-      address: id,
-      data: poolData,
-    },
-  };
-}
-
 async function fetchPoolPairData(
   address: string
 ): Promise<StrategicPairDetails | null> {
@@ -53,15 +31,12 @@ async function fetchPoolPairData(
   });
 
   const poolData = processSinglePairData(data?.data)!;
-  console.log("See data -> ", data, poolData);
   return poolData;
 }
 
 export default async function Page({ params }: any) {
   const pairAddress = params?.address;
   const res = await fetchPoolPairData(pairAddress);
-
-  console.log("SEE DATA here", params, res);
 
   return (
     <PageWrapper>

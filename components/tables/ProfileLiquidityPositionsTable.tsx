@@ -8,6 +8,8 @@ import EmptyTextHeader from "../common/headers/EmptyTextHeader";
 import ExternalLink from "../common/links/ExternalLink";
 import { BaseDataTable } from "./BaseDataTable";
 import { NULL_ADDRESS } from "@/utils/constants";
+import Tag from "../common/tag";
+import { DISPLAY_USD_DECIMALS } from "@/utils/helpers/misc";
 
 const MOCK_DATA: LiquidityPositionDetails[] = [
   {
@@ -65,7 +67,7 @@ export default function ProfileLiquidityPositionsTable({
           loading ? (
             <Skeleton orientation="horizontal" width={"full"} height={"2rem"} />
           ) : (
-            info.getValue()
+            <Tag content={info.getValue() ? "STABLE" : "VOLATILE"}></Tag>
           ),
         header: "Mode",
       }),
@@ -74,7 +76,7 @@ export default function ProfileLiquidityPositionsTable({
           loading ? (
             <Skeleton orientation="horizontal" width={"80%"} height={"2rem"} />
           ) : (
-            info.getValue()
+            info.getValue().toFixed(DISPLAY_USD_DECIMALS)
           ),
         header: "Amount (Token0)",
       }),
@@ -83,7 +85,7 @@ export default function ProfileLiquidityPositionsTable({
           loading ? (
             <Skeleton orientation="horizontal" width={"80%"} height={"2rem"} />
           ) : (
-            info.getValue()
+            info.getValue().toFixed(DISPLAY_USD_DECIMALS)
           ),
         header: "Amount (Token1)",
       }),
@@ -92,7 +94,7 @@ export default function ProfileLiquidityPositionsTable({
           loading ? (
             <Skeleton orientation="horizontal" width={"80%"} height={"2rem"} />
           ) : (
-            info.getValue()
+            info.getValue().toFixed(DISPLAY_USD_DECIMALS)
           ),
         header: "LP Token Amount",
       }),
@@ -101,7 +103,7 @@ export default function ProfileLiquidityPositionsTable({
           loading ? (
             <Skeleton orientation="horizontal" width={"80%"} height={"2rem"} />
           ) : (
-            info.getValue()
+            info.getValue().toFixed(DISPLAY_USD_DECIMALS)
           ),
         header: "USD Value",
       }),

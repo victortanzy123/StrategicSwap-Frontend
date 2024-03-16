@@ -20,22 +20,17 @@ type PoolCardProps = {
 };
 
 function PoolCard({ data, poolConfigData, loading }: PoolCardProps) {
-  console.log("SEE POOL CARD", data);
   if (!data) return <></>;
   const { token0, token1, name, yieldPercentage } = poolConfigData;
-  // const poolName = `${data?.token0!.name}-${data?.token1!.name}`;
   const swapMode = data.isStable ? SwapMode.STABLE : SwapMode.VOLATILE;
   return (
-    <NextLink href={`/pool-pair/${data?.address}`}>
+    <NextLink href={`/market/${data?.address}`}>
       <div
         className={`relative group border-transparent bg-gradient-to-t from-blue-900 via-blue-800 to-blue-600 bg-opacity-10 cursor-pointer shadow-md hover:transform hover:-translate-y-2 hover:shadow-lg transition-transform duration-300 rounded-lg p-6 w-80 h-60`}
       >
         <div className="border-4 border-blue-600 absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         <div className={"h-full w-full"}>
           <div className={"flex  items-center"}>
-            {/* <h2 className={"tracking-wider text-3xl mb-1 text-white"}>
-              {poolName}
-            </h2> */}
             <Image
               src={token0.image}
               width={50}

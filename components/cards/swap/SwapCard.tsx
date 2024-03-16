@@ -30,10 +30,14 @@ import SwapIconSwitch from "./SwapIconSwitch";
 import PercentageButtonsGroup from "@/components/common/buttons/PercentageButtonsGroup";
 import { previewSwapAmountOut } from "@/utils/helpers/web3-api";
 import { formatValue, unformatValue } from "@/utils/helpers/web3";
-import { DISPLAY_USD_DECIMALS } from "@/utils/helpers/misc";
+import {
+  DISPLAY_USD_DECIMALS,
+  validateSufficientBalance,
+} from "@/utils/helpers/misc";
 import SwapModal from "@/components/common/modals/SwapModal";
 import useDisclosure from "@/hooks/common/useDisclosure";
 import useSwapTokens from "@/hooks/web3/useSwapTokens";
+import useDebouncer from "@/hooks/common/useDebouncer";
 
 type SwapCardProps = {
   pairAddress: string;
@@ -115,14 +119,45 @@ function SwapCard({
     setIsLoading(() => false);
   }
 
+  const debouncedPreviewSwapAmountOut = useDebouncer({
+    callback: getPreviewSwapAmountOut,
+  });
+
   useEffect(() => {
-    if (swapInState.tokenAmount > 0) getPreviewSwapAmountOut();
+    // if (swapInState.tokenAmount > 0) getPreviewSwapAmountOut();
+    if (swapInState.tokenAmount > 0) debouncedPreviewSwapAmountOut();
   }, [swapInState.tokenAmount]);
 
   const token0UserState = userTokenBalances?.token0;
   const token1UserState = userTokenBalances?.token1;
   const swapOutTokenState =
     swapInState.tokenIndex === 0 ? token1UserState : token0UserState;
+
+  function validatePreSwapState(
+    state: SwapInState,
+    ownedTokenState: UserTokensState | null
+  ): boolean {
+    if (ownedTokenState === null) return false;
+
+    const swapInIndex = state.tokenIndex;
+    const swapInTokenSpecifiedValue = state.tokenAmount;
+    const ownedSwapInTokenBalance = parseFloat(
+      swapInIndex === 0
+        ? (ownedTokenState.token0.balance as string)
+        : (ownedTokenState.token1.balance as string)
+    );
+
+    return validateSufficientBalance(
+      swapInTokenSpecifiedValue,
+      ownedSwapInTokenBalance
+    );
+  }
+
+  const validatedPreSwapState = validatePreSwapState(
+    swapInState,
+    userTokenBalances
+  );
+  const connectedAndWrongInput = !!userAddress && !validatedPreSwapState;
 
   const swapInTokenBalance = parseFloat(
     (swapInState.tokenIndex === 0
@@ -161,7 +196,6 @@ function SwapCard({
     setIsLoading(() => true);
     await refreshUserSwapState();
     setIsLoading(() => false);
-    console.log("SWAP TRANSACTION HASH:", txHash);
   };
 
   const toggleOpen = useCallback(() => {
@@ -266,13 +300,22 @@ function SwapCard({
             size={"2xl"}
             height={"3rem"}
             onClick={swapHandler}
-            isDisabled={swapInState.tokenAmount === 0 || isLoading}
+            isDisabled={
+              swapInState.tokenAmount === 0 ||
+              isLoading ||
+              !validatedPreSwapState
+            }
             textColor={"white"}
             bg={"gray.500"}
+            border={"1px solid white"}
             textTransform={"uppercase"}
             letterSpacing={"0.1em"}
           >
-            {userAddress ? "SWAP" : "CONNECT WALLET"}
+            {userAddress
+              ? validatedPreSwapState
+                ? "SWAP"
+                : "INSUFFICIENT BALANCE"
+              : "CONNECT WALLET"}
           </Button>
         </CardBody>
       </Card>

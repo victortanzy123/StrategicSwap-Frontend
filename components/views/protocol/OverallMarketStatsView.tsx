@@ -16,7 +16,7 @@ function OverallMarketStatsView() {
     client,
     variables: { id: "" },
   });
-  console.log("SEE", processFactoryPoolPairsData(data!));
+
   const factoryStats = processFactoryPoolPairsData(data!)?.factoryStats;
   const loading = !!!factoryStats;
   return (

@@ -10,7 +10,7 @@ type LoadingStepperProps = {
 };
 
 function LoadingStepper({ isLoad, instruction }: LoadingStepperProps) {
-  console.log("SEE IS LOAD:", isLoad);
+
   return (
     <Flex
       position={"relative"}

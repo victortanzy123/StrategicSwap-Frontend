@@ -25,7 +25,10 @@ import {
   depositLiquidity,
   previewLpTokenAmountUponLP,
 } from "@/utils/helpers/web3-api";
-import { DEFAULT_DECIMALS_PRECISION } from "@/utils/helpers/misc";
+import {
+  DEFAULT_DECIMALS_PRECISION,
+  validateSufficientBalance,
+} from "@/utils/helpers/misc";
 import useDisclosure from "@/hooks/common/useDisclosure";
 import useDepositLiquidity from "@/hooks/web3/useDepositLiquidity";
 import LiquidityDepositModal from "@/components/common/modals/LiquidityDepositModal";
@@ -64,6 +67,32 @@ function LiquidityDepositComponent({
   const [depositState, setDepositState] = useState<DepositLiquidityState>(
     DEFAULT_DEPOSIT_STATE
   );
+
+  const validatedPreDepositState = validatePreDepositState(
+    depositState,
+    userTokenBalancesState
+  );
+  const connectedAndWrongInput = !!user && !validatedPreDepositState;
+
+  function validatePreDepositState(
+    state: DepositLiquidityState,
+    ownedTokensState: UserTokensState | null
+  ): boolean {
+    const { token0Amount, token1Amount } = state;
+
+    if (ownedTokensState === null) return false;
+
+    const ownedToken0Balance = parseFloat(
+      ownedTokensState?.token0.balance as string
+    );
+    const ownedToken1Balance = parseFloat(
+      ownedTokensState?.token1.balance as string
+    );
+    return (
+      validateSufficientBalance(token0Amount, ownedToken0Balance) &&
+      validateSufficientBalance(token1Amount, ownedToken1Balance)
+    );
+  }
 
   function getPreviewLpTokenAmountOut() {
     if (
@@ -131,7 +160,7 @@ function LiquidityDepositComponent({
 
     onOpen(); // Open Deposit Liquidity modal
     setIsDepositing(() => true);
-    const depositTxHash = await depositLiquidity(
+    await depositLiquidity(
       wallet!,
       user!,
       pairAddress,
@@ -140,7 +169,6 @@ function LiquidityDepositComponent({
       pair.token1.address,
       depositState.token1Amount
     );
-    console.log("DEPOSIT TX WIF STATE:", depositTxHash, depositState, wallet);
     setIsDepositing(() => false);
 
     setIsLoading(() => true);
@@ -260,12 +288,15 @@ function LiquidityDepositComponent({
         letterSpacing={"0.1em"}
         fontWeight={"300"}
         isLoading={isDepositing}
-        isDisabled={loading}
+        isDisabled={loading || connectedAndWrongInput}
         onClick={depositHandler}
         textColor={"white"}
+        border={"1px solid white"}
         bg={"gray.500"}
       >
-        PROVIDE LIQUIDITY
+        {validatedPreDepositState
+          ? "PROVIDE LIQUIDITY"
+          : "INSUFFICIENT BALANCE"}
       </Button>
     </>
   );

@@ -15,7 +15,7 @@ function PoolMainView() {
     client,
     variables: { id: "" },
   });
-  console.log("SEE", processFactoryPoolPairsData(data!));
+
   const processedData = processFactoryPoolPairsData(data!);
   const factoryStats = processedData?.factoryStats;
   const pairsData = processedData?.pairsData;

@@ -64,7 +64,7 @@ function LiquidityHeader({ poolConfigData }: LiquidityHeaderProps) {
               fontSize={"lg"}
               letterSpacing={"0.06em"}
             >
-              <span>&gt;</span> {yieldPercentage.toFixed(2)}%
+              <span>&gt;</span> {15.0}%
               <Tooltip label={"Passive APY + Trading APY"} hasArrow>
                 <InfoIcon mx={"0.5rem"} />
               </Tooltip>
@@ -82,7 +82,7 @@ function LiquidityHeader({ poolConfigData }: LiquidityHeaderProps) {
           <ApyView
             apyType={"Trading"}
             hoverText={"Interest from trading fees of strategic pool."}
-            yieldPercentage={1.0}
+            yieldPercentage={10.8}
           />
         </Flex>
       </div>

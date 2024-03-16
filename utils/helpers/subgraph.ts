@@ -61,7 +61,6 @@ export function processFactoryPoolPairsData(
     };
   });
 
-  console.log("See pair data", pairsData);
 
   const factoryStats: FactoryStatistics = {
     pairCount,
@@ -69,8 +68,6 @@ export function processFactoryPoolPairsData(
     totalVolumeUSD: parseFloat(totalVolumeUSD),
     totalTvlUSD: overallTvl,
   };
-
-  console.log("See factory statis", factoryStats);
 
   return {
     pairsData,

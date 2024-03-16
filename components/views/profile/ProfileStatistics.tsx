@@ -32,7 +32,7 @@ function ProfileStatistics({ data }: ProfileStatsProps) {
         <Divider orientation="vertical" />
         <BasicStatisticView
           headerText={"Total LP Positions"}
-          displayValue={lpCount.toFixed(DISPLAY_USD_DECIMALS)}
+          displayValue={lpCount}
           loading={loading}
         />
       </StatGroup>

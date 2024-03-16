@@ -82,7 +82,6 @@ export function calcCorTokenDepositAmount(
   token1Amount: number;
 } {
   const ratio = safeDiv(reserve0, reserve1);
-  console.log("SEE HERE", amount, reserve0, reserve1, ratio);
 
   return inputTokenIndex === 0
     ? { token0Amount: amount, token1Amount: amount / ratio }

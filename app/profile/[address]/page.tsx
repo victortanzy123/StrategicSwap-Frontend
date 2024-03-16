@@ -35,7 +35,7 @@ async function fetchProfileLiquidityPositionsData(
   });
 
   const poolData = processProfileLiquidityPositionsData(data?.data)!;
-  console.log("See data -> ", data, poolData);
+
   return poolData;
 }
 
@@ -46,8 +46,6 @@ export default async function Page({
 }) {
   const userAddress = params.address;
   const res = await fetchProfileLiquidityPositionsData(userAddress);
-
-  console.log("SEE DATA here", params, res);
 
   return (
     <PageWrapper>

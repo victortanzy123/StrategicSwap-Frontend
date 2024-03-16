@@ -73,7 +73,6 @@ function useWithdrawLiquidity(): UseSwapTokensProps {
           approveLpToken: CommonState.COMPLETED,
         }));
 
-        console.log("SEE WITHDRWAL PARAMS:", user, formattedAmount);
         const withdrawTx = await contract.withdraw(user, formattedAmount);
         const withdrawTxReceipt = await withdrawTx.wait();
 

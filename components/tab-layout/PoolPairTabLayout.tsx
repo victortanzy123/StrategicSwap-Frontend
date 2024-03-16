@@ -50,7 +50,6 @@ function PoolPairTabLayout({
     user: string,
     isMounted: boolean
   ) {
-    console.log("entered", user, tokenAddresses);
     if (!isMounted) return;
 
     try {
@@ -85,7 +84,6 @@ function PoolPairTabLayout({
     let isMounted = true;
     async function updateReservesData() {
       const res = await getUpdatedReserves(pairAddress);
-      console.log("UPDATED RESERVES", res);
     }
     if (isMounted) updateReservesData();
 

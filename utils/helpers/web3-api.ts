@@ -82,15 +82,6 @@ export function previewLpTokenAmountUponLP(
   reserve1: number,
   totalSupply: number // LP Token supply
 ) {
-  // console.log("SEE INSIDE", poolPair, user, token0Amount, token1Amount);
-  // const contract = getPoolContract(poolPair);
-
-  // // Simulate the call without actually executing it
-  // const result = await contract.deposit.staticCall(
-  //   user,
-  //   unformatValue(token0Amount, DEFAULT_DECIMALS),
-  //   unformatValue(token1Amount, DEFAULT_DECIMALS)
-  // );
   const ratio0 = safeDiv(token0Amount * totalSupply, reserve0);
   const ratio1 = safeDiv(token1Amount * totalSupply, reserve1);
 
@@ -107,18 +98,12 @@ export async function checkSufficientTokenApproval(
 
   try {
     const approvedAmount = await contract.allowance(user, operator);
-    console.log("SEE RAW APPROVED AMOUNT:", approvedAmount);
+
     const formattedApprovedAmount = formatValue(
       approvedAmount,
       DEFAULT_DECIMALS
     ) as string;
-    console.log(
-      "SEE APPROVED AMOUNT:",
-      formattedApprovedAmount,
-      approvedAmount,
-      amount,
-      BigInt(approvedAmount) >= BigInt(amount)
-    );
+
     return BigInt(approvedAmount) >= BigInt(amount);
   } catch (error) {
     console.log("ERROR VIEWING ALLOWANCE:", error);
@@ -132,9 +117,8 @@ export async function approveERC20Token(
   pairAddress: string,
   amount: string
 ): Promise<string> {
-  console.log("SEE WALLET INSIDE APPROVE", wallet);
   const contract = await getContract(tokenAddress, ERC20.abi, wallet);
-  console.log("SEE TOKEN CONTRACT", contract);
+
   try {
     const tx = await contract.approve(pairAddress, amount);
     const txReceipt = await tx.wait();
@@ -242,7 +226,6 @@ export async function withdrawLiquidity(
       if (!approveTx) throw new Error();
     }
 
-    console.log("SEE WITHDRWAL PARAMS:", user, formattedAmount);
     const withdrawTx = await contract.withdraw(user, formattedAmount);
     const withdrawTxReceipt = await withdrawTx.wait();
 
@@ -260,9 +243,7 @@ export async function swap(
   tokenInAddress: string,
   tokenInAmount: number
 ): Promise<string> {
-  console.log("SEE WALLET INPUT", wallet);
   const contract = await getPoolContract(pairAddress, wallet!);
-  console.log("SEE CONTRACT", contract);
   const formattedTokenInAmount = unformatValue(tokenInAmount, 18);
 
   try {
@@ -312,7 +293,6 @@ export async function getContract(
   abi: any,
   wallet?: WalletState | null
 ): Promise<Contract> {
-  console.log("SEE WALLET BOOLEAN IN TOKEN CONTRACT", !!wallet);
   if (!!wallet) {
     const web3Provider = new ethers.BrowserProvider(wallet.provider, "any");
     const signer = await web3Provider.getSigner();
@@ -328,7 +308,6 @@ export async function getPoolContract(
   address: string,
   wallet?: WalletState | null
 ): Promise<Contract> {
-  console.log("SEE BOOLEAN:", !!wallet);
 
   if (!!wallet) {
     const web3Provider = new ethers.BrowserProvider(wallet.provider, "any");

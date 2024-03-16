@@ -26,6 +26,7 @@ import {
 import {
   DEFAULT_DECIMALS_PRECISION,
   DISPLAY_USD_DECIMALS,
+  validateSufficientBalance,
 } from "@/utils/helpers/misc";
 import {
   calcTokensOutputFromLpTokenAmount,
@@ -69,6 +70,28 @@ function LiquidityWithdrawalComponent({
   const [withdrawalState, setWithdrawalState] =
     useState<WithdrawLiquidityState>(DEFAULT_WITHDRAWAL_STATE);
 
+  const validatedPreWithdrawalState = validatePreWithdrawalState(
+    withdrawalState,
+    userTokenBalancesState
+  );
+  const connectedAndWrongInput = !!user && !validatedPreWithdrawalState;
+
+  function validatePreWithdrawalState(
+    state: WithdrawLiquidityState,
+    ownedTokensState: UserTokensState | null
+  ): boolean {
+    if (ownedTokensState === null) return false;
+
+    const specifiedLpTokenToWithdraw = state.lpTokenToWithdraw;
+    const ownedLpTokenBalance = parseFloat(
+      userTokenBalancesState?.lpToken.balance as string
+    );
+    return validateSufficientBalance(
+      specifiedLpTokenToWithdraw,
+      ownedLpTokenBalance
+    );
+  }
+
   const getAmountByPercentage = useCallback((percentageValue: number) => {
     const lpAmount = safeDiv(
       (userTokenBalancesState?.lpToken.balance as number) * percentageValue,
@@ -80,8 +103,9 @@ function LiquidityWithdrawalComponent({
       pair.reserve0,
       pair.reserve1
     );
-    setWithdrawalState((prev) => ({
-      ...prev,
+
+    setWithdrawalState(() => ({
+      lpTokenToWithdraw: lpAmount,
       token0Redeemable: token0Amount,
       token1Redeemable: token1Amount,
     }));
@@ -108,8 +132,8 @@ function LiquidityWithdrawalComponent({
   };
 
   const valueChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    const lpAmount = parseFloat(event.target.value) as number;
     setWithdrawalState(() => {
-      const lpAmount = parseFloat(event.target.value) as number;
       const { token0Amount, token1Amount } = calcTokensOutputFromLpTokenAmount(
         lpAmount,
         pair.totalLpSupply,
@@ -118,13 +142,12 @@ function LiquidityWithdrawalComponent({
       );
 
       return {
-        lpTokenToWithdraw: parseFloat(event.target.value) as number,
+        lpTokenToWithdraw: lpAmount,
         token0Redeemable: token0Amount,
         token1Redeemable: token1Amount,
       };
     });
   };
-  console.log("SEE WITHDRAWAL STATE", withdrawalState);
 
   const toggleOpen = useCallback(() => {
     refreshWithdrawTransactionState();
@@ -210,12 +233,15 @@ function LiquidityWithdrawalComponent({
         letterSpacing={"0.1em"}
         fontWeight={"300"}
         isLoading={isWithdrawing}
-        isDisabled={loading}
+        border={"1px solid white"}
+        isDisabled={loading || connectedAndWrongInput}
         onClick={withdrawHandler}
         bg={"gray.500"}
         textColor={"white"}
       >
-        WITHDRAW LIQUIDITY
+        {validatedPreWithdrawalState
+          ? "WITHDRAW LIQUIDITY"
+          : "INSUFFICIENT BALANCE"}
       </Button>
     </>
   );

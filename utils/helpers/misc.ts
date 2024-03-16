@@ -86,3 +86,10 @@ export function getMonthYearString(
 export function truncateHexString(input: string): string {
   return `${input.slice(0, 4)}...${input.slice(-3)}`;
 }
+
+export function validateSufficientBalance(
+  specified: number,
+  owned: number
+): boolean {
+  return specified <= owned;
+}

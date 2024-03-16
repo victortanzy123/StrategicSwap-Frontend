@@ -50,9 +50,6 @@ async function testMulticall(
       tokenAddresses,
       user
     );
-    if (isMounted) {
-      console.log("SEE HERE", balances, tokens);
-    }
   } catch (error) {
     console.log("ERROR TOKEN BALANCE:", error);
   }
@@ -66,42 +63,6 @@ type PoolLayoutProps = {
 const POOL_CONFIGS: PoolConfigModel[] = [DAI_USDC_POOL_METADATA];
 
 function PoolLayout({ data, loading }: PoolLayoutProps) {
-  console.log("SEE ", MAIN_SUBGRAPH_URL, client, INITIAL_QUERY_PARAMS);
-  // const [_, { loading, data, error }] = useLazyQuery(factoryStatisticsQuery(), {
-  //   client,
-  //   variables: INITIAL_QUERY_PARAMS,
-  // });
-  // console.log("SEE RESULT", loading, data, error);
-  // const { loading, data, error } = useQuery(factoryStatisticsQuery(), {
-  //   client,
-  //   variables: { id: "" },
-  // });
-  // const { loading, data, error } = useQuery(factoryPoolPairsDataQuery(), {
-  //   client,
-  //   variables: INITIAL_QUERY_PARAMS,
-  // });
-
-  console.log("SEE HERE POOL LAYOUT", loading, data);
-
-  // useEffect(() => {
-  //   let isMounted = true;
-
-  //   async function test() {
-  //     await getUpdatedReserves(TEST_POOL_ADDRESS);
-  //     await previewSwapAmountOut(TEST_POOL_ADDRESS, TOKENS[0], "10000");
-  //   }
-
-  //   testMulticall(
-  //     TOKENS,
-  //     "0x42c0810EF178f96FD76f085e48bd8a2a480Ba727",
-  //     isMounted
-  //   );
-  //   test();
-
-  //   return () => {
-  //     isMounted = false;
-  //   };
-  // }, []);
   return (
     <>
       {loading ? (

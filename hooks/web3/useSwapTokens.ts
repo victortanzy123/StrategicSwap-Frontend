@@ -43,9 +43,8 @@ function useSwapTokens(): UseSwapTokensProps {
       tokenInAddress: string,
       tokenInAmount: number
     ): Promise<string> => {
-      console.log("SEE WALLET INPUT", wallet);
+
       const contract = await getPoolContract(pairAddress, wallet!);
-      console.log("SEE CONTRACT", contract);
       const formattedTokenInAmount = unformatValue(tokenInAmount, 18);
 
       try {
@@ -57,7 +56,6 @@ function useSwapTokens(): UseSwapTokensProps {
             formattedTokenInAmount
           ))
         ) {
-          console.log("APPROVING TOKEN");
           const approveTx = await approveERC20Token(
             wallet,
             tokenInAddress,

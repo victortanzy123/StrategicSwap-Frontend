@@ -11,8 +11,8 @@ const NAV_TABS: { path: string; text: string }[] = [
     text: "home",
   },
   {
-    path: "pools",
-    text: "pools",
+    path: "markets",
+    text: "markets",
   },
 ];
 
