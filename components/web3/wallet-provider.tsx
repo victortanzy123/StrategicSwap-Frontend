@@ -45,9 +45,9 @@ const web3Onboard = init({
           header: "Select wallet to connect.",
           sidebar: {
             heading: "Hello",
-            subheading: "Welcome to NFT @ ArtZone",
+            subheading: "Welcome to StrategicSwap!",
             paragraph:
-              "Connecting your digital wallet will enable you to create and collect NFTs on our platform.",
+              "Connecting your digital wallet enables you to swap tokens or earn yields from liquidity provision.",
           },
         },
       },
