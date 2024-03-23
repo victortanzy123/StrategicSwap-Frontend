@@ -61,7 +61,6 @@ export function processFactoryPoolPairsData(
     };
   });
 
-
   const factoryStats: FactoryStatistics = {
     pairCount,
     totalFeeUSD: parseFloat(totalFeeUSD),
@@ -271,6 +270,7 @@ export function processProfileLiquidityPositionsData(
       } as LiquidityPositionDetails;
     }
   );
+
   const profileTotalVolume =
     liquidityPositions.length > 0
       ? parseFloat(rawData[0].user.totalSwappedVolumeUSD)

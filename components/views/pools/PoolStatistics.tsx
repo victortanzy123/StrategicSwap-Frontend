@@ -17,6 +17,7 @@ type PoolStatsProps = {
 };
 
 function PoolStatistics({ data }: PoolStatsProps) {
+
   const { isStable, totalFeeGenerated, totalVolume, tvl } = data;
   const poolModeDisplayValue = isStable ? "STABLE" : "VOLATILE";
   const loading = !!!data;

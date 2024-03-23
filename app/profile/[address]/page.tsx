@@ -32,6 +32,7 @@ async function fetchProfileLiquidityPositionsData(
   const { data, loading } = await client.query({
     query: profileLiquidityPositionsQuery(),
     variables: { ...PROFILE_LP_DATA_INTIAL_PARAMS(address) },
+    fetchPolicy: "no-cache",
   });
 
   const poolData = processProfileLiquidityPositionsData(data?.data)!;

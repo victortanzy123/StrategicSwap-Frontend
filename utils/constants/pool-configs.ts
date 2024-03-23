@@ -17,7 +17,6 @@ export type PoolConfigModel = {
   description: string;
 };
 
-
 export const DAI_USDC_POOL_METADATA: PoolConfigModel = {
   id: 0,
   name: "DAI-USDC Pool",

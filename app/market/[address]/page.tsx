@@ -28,6 +28,7 @@ async function fetchPoolPairData(
   const { data, loading } = await client.query({
     query: strategicPoolPairQuery(),
     variables: { id: address.toLowerCase() },
+    fetchPolicy: "no-cache",
   });
 
   const poolData = processSinglePairData(data?.data)!;

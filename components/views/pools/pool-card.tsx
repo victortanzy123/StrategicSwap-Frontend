@@ -53,7 +53,7 @@ function PoolCard({ data, poolConfigData, loading }: PoolCardProps) {
             </div>
           </div>
           <div className={"flex mt-4 items-center justify-between"}>
-            <span className={"mr-4 text-teal-100"}> 5.00% p.a</span>
+            <span className={"mr-4 text-teal-100"}> 15.80% p.a</span>
             <Tag content={swapMode} size={CommonSize.md} />
           </div>
           <div className={"flex mt-1"}>
