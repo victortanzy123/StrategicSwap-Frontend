@@ -37,6 +37,7 @@ type LiquidityDepositComponentProps = {
   pair: StrategicPairDetails;
   pairAddress: string;
   user: string | null;
+  connect: any;
   wallet: WalletState | null;
   userTokenBalancesState: UserTokensState | null;
   refreshUserTokenBalances: () => void;
@@ -51,6 +52,7 @@ function LiquidityDepositComponent({
   pairAddress,
   user,
   wallet,
+  connect,
   userTokenBalancesState,
   refreshUserTokenBalances,
 }: LiquidityDepositComponentProps) {
@@ -156,7 +158,7 @@ function LiquidityDepositComponent({
   };
 
   const depositHandler = async () => {
-    if (!!!wallet || !!!user) return;
+    if (!!!wallet || !!!user) return connect();
 
     onOpen(); // Open Deposit Liquidity modal
     setIsDepositing(() => true);
@@ -288,15 +290,17 @@ function LiquidityDepositComponent({
         letterSpacing={"0.1em"}
         fontWeight={"300"}
         isLoading={isDepositing}
-        isDisabled={loading || connectedAndWrongInput}
+        isDisabled={!!user && (loading || connectedAndWrongInput)}
         onClick={depositHandler}
         textColor={"white"}
         border={"1px solid white"}
         bg={"gray.500"}
       >
-        {validatedPreDepositState
-          ? "PROVIDE LIQUIDITY"
-          : "INSUFFICIENT BALANCE"}
+        {user
+          ? validatedPreDepositState
+            ? "PROVIDE LIQUIDITY"
+            : "INSUFFICIENT BALANCE"
+          : "CONNECT WALLET"}
       </Button>
     </>
   );

@@ -44,7 +44,7 @@ function LiquidityCard({
   userTokenBalances,
   refreshUserTokenBalances,
 }: LiquidityCardProps) {
-  const [{ wallet }] = useConnectWallet();
+  const [{ wallet }, connect] = useConnectWallet();
   const user = wallet?.accounts[0].address ?? null;
 
   return (
@@ -92,6 +92,7 @@ function LiquidityCard({
                   pair={data}
                   pairAddress={pairAddress}
                   user={user}
+                  connect={connect}
                   wallet={wallet}
                   userTokenBalancesState={userTokenBalances}
                   refreshUserTokenBalances={refreshUserTokenBalances}
@@ -103,6 +104,7 @@ function LiquidityCard({
                   pairAddress={pairAddress}
                   user={user}
                   wallet={wallet}
+                  connect={connect}
                   userTokenBalancesState={userTokenBalances}
                   refreshUserTokenBalances={refreshUserTokenBalances}
                 />

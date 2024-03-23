@@ -159,11 +159,13 @@ function SwapCard({
   );
   const connectedAndWrongInput = !!userAddress && !validatedPreSwapState;
 
-  const swapInTokenBalance = parseFloat(
-    (swapInState.tokenIndex === 0
-      ? token0UserState?.balance
-      : token1UserState?.balance) as string
-  ).toFixed(DISPLAY_USD_DECIMALS);
+  const swapInTokenBalance = !!token0UserState
+    ? parseFloat(
+        (swapInState.tokenIndex === 0
+          ? token0UserState?.balance
+          : token1UserState?.balance) as string
+      ).toFixed(DISPLAY_USD_DECIMALS)
+    : "0";
 
   const getAmountByPercentage = useCallback(
     (percentageValue: number) => {
@@ -257,7 +259,7 @@ function SwapCard({
             <Flex mt={"0.5rem"} justifyContent={"space-between"}>
               <Skeleton isLoaded={!isLoading} minWidth={"8rem"}>
                 <FormHelperText textColor={"white"}>
-                  Balance: {swapInTokenBalance}
+                  Balance: {swapInTokenBalance ?? 0}
                 </FormHelperText>
               </Skeleton>
               <PercentageButtonsGroup callback={getAmountByPercentage} />
@@ -301,9 +303,10 @@ function SwapCard({
             height={"3rem"}
             onClick={swapHandler}
             isDisabled={
-              swapInState.tokenAmount === 0 ||
-              isLoading ||
-              !validatedPreSwapState
+              !!userAddress &&
+              (swapInState.tokenAmount === 0 ||
+                isLoading ||
+                !validatedPreSwapState)
             }
             textColor={"white"}
             bg={"gray.500"}

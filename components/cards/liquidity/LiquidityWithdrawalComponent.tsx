@@ -41,6 +41,7 @@ type LiquidityWithdrawalComponentProps = {
   pairAddress: string;
   user: string | null;
   wallet: WalletState | null;
+  connect: any;
   userTokenBalancesState: UserTokensState | null;
   refreshUserTokenBalances: () => void;
 };
@@ -55,6 +56,7 @@ function LiquidityWithdrawalComponent({
   pairAddress,
   user,
   wallet,
+  connect,
   userTokenBalancesState,
   refreshUserTokenBalances,
 }: LiquidityWithdrawalComponentProps) {
@@ -112,7 +114,7 @@ function LiquidityWithdrawalComponent({
   }, []);
 
   const withdrawHandler = async () => {
-    if (!!!wallet || !!!user) return;
+    if (!!!wallet || !!!user) return connect();
 
     onOpen(); // Open modal
     setIsWithdrawing(() => true);
@@ -234,14 +236,16 @@ function LiquidityWithdrawalComponent({
         fontWeight={"300"}
         isLoading={isWithdrawing}
         border={"1px solid white"}
-        isDisabled={loading || connectedAndWrongInput}
+        isDisabled={!!user && (loading || connectedAndWrongInput)}
         onClick={withdrawHandler}
         bg={"gray.500"}
         textColor={"white"}
       >
-        {validatedPreWithdrawalState
-          ? "WITHDRAW LIQUIDITY"
-          : "INSUFFICIENT BALANCE"}
+        {user
+          ? validatedPreWithdrawalState
+            ? "WITHDRAW LIQUIDITY"
+            : "INSUFFICIENT BALANCE"
+          : "CONNECT WALLET"}
       </Button>
     </>
   );

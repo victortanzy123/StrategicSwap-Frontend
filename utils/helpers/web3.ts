@@ -92,10 +92,6 @@ export function unformatValue(
       ? formattedValue.toString()
       : formattedValue;
 
-  console.log(
-    "SEE UNFORMATTED AMOUNT:",
-    ethers.parseUnits(formattedValue, decimals).toString()
-  );
   return ethers.parseUnits(formattedValue, decimals).toString();
 }
 

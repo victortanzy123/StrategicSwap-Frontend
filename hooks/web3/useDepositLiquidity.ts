@@ -96,12 +96,6 @@ function useDepositLiquidity(): UseSwapTokensProps {
           approveToken1: CommonState.COMPLETED,
         }));
 
-        console.log(
-          "SEE DEPOSIT PARAMS",
-          user,
-          formattedToken0Amount,
-          formattedToken1Amount
-        );
         // Simulate the call without actually executing it
         const depositTx = await contract.deposit(
           user,

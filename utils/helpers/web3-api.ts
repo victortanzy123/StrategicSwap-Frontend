@@ -36,7 +36,7 @@ export async function getUpdatedReserves(
   try {
     const contract = await getPoolContract(poolPair);
     const reserves = await contract["getReserves()"]();
-    console.log("SEE RESERVES:", formatEther(reserves[0].toString()), reserves);
+
     const [reserves0, reserves1, _] = reserves;
     return {
       reserves0: formatEther(reserves0.toString()),
@@ -255,7 +255,6 @@ export async function swap(
         formattedTokenInAmount
       ))
     ) {
-      console.log("APPROVING TOKEN");
       const approveTx = await approveERC20Token(
         wallet,
         tokenInAddress,
@@ -265,13 +264,6 @@ export async function swap(
       if (!approveTx) throw new Error();
     }
 
-    console.log(
-      "TRYING TO SWAP",
-      user,
-      tokenInAmount,
-      formattedTokenInAmount,
-      tokenInAddress
-    );
     const swapTx = await contract.swap(
       formattedTokenInAmount,
       tokenInAddress,
@@ -308,7 +300,6 @@ export async function getPoolContract(
   address: string,
   wallet?: WalletState | null
 ): Promise<Contract> {
-
   if (!!wallet) {
     const web3Provider = new ethers.BrowserProvider(wallet.provider, "any");
     const signer = await web3Provider.getSigner();

@@ -43,7 +43,6 @@ function useSwapTokens(): UseSwapTokensProps {
       tokenInAddress: string,
       tokenInAmount: number
     ): Promise<string> => {
-
       const contract = await getPoolContract(pairAddress, wallet!);
       const formattedTokenInAmount = unformatValue(tokenInAmount, 18);
 
@@ -69,13 +68,6 @@ function useSwapTokens(): UseSwapTokensProps {
           approveSwapInToken: CommonState.COMPLETED,
         }));
 
-        console.log(
-          "TRYING TO SWAP",
-          user,
-          tokenInAmount,
-          formattedTokenInAmount,
-          tokenInAddress
-        );
         const swapTx = await contract.swap(
           formattedTokenInAmount,
           tokenInAddress,

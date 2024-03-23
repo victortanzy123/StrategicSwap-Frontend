@@ -14,7 +14,6 @@ const POOL_INITIAL_PARAMS = (pairAddress: string) => {
     first: 10,
     skip: 0,
     id: pairAddress.toLowerCase(),
-    // types: ["MINT", "BURN", "SWAP"],
     orderDirection: "desc",
     orderBy: "timestamp",
   };
